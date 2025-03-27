@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
-declare module "microfrontend1/Button" {
-  const Button: React.ComponentType;
-  export default Button;
+declare module "microfrontend1/PokemonDetail" {
+  const PokemonDetail: React.ComponentType;
+  export default PokemonDetail;
 }
 
 declare module "microfrontend2/Title" {

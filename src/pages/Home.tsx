@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import fetchPokemons from "../handlers/fetchPokemons";
+import fetchPokemonsByType from "../handlers/fetchPokemonsByType";
 
 const Home = () => {
   const [firePokemons, setFirePokemons] = useState<any>([]);
@@ -10,11 +10,11 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const firePokemons = await fetchPokemons("fire");
-      const waterPokemons = await fetchPokemons("water");
-      const electricPokemons = await fetchPokemons("electric");
-      const dragonPokemons = await fetchPokemons("dragon");
-      const ghostPokemons = await fetchPokemons("ghost");
+      const firePokemons = await fetchPokemonsByType("fire");
+      const waterPokemons = await fetchPokemonsByType("water");
+      const electricPokemons = await fetchPokemonsByType("electric");
+      const dragonPokemons = await fetchPokemonsByType("dragon");
+      const ghostPokemons = await fetchPokemonsByType("ghost");
 
       setFirePokemons(firePokemons);
       setWaterPokemons(waterPokemons);
@@ -32,9 +32,11 @@ const Home = () => {
       <section>
         <h2>Fuego</h2>
         <ul className="flex overflow-x-auto scrollbar-hide">
-          {firePokemons.map((pokemon: any, index: number) => (
-            <li key={`pokemon-fire-${index}`} className="shrink-0">
-              <img src={pokemon} alt={`pokemon-fire-${index}`} className="w-auto h-auto" />
+          {firePokemons.map((pokemon: any) => (
+            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
+              <a href={`/pokemon-detail/${pokemon.id}`}>
+                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} className="w-auto h-auto" />
+              </a>
             </li>
           ))}
         </ul>
@@ -42,9 +44,11 @@ const Home = () => {
       <section>
         <h2>Agua</h2>
         <ul className="flex overflow-x-auto scrollbar-hide">
-          {waterPokemons.map((pokemon: any, index: number) => (
-            <li key={`pokemon-water-${index}`} className="shrink-0">
-              <img src={pokemon} alt={`pokemon-water-${index}`} />
+          {waterPokemons.map((pokemon: any) => (
+            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
+              <a href={`/pokemon-detail/${pokemon.id}`}>
+                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
+              </a>
             </li>
           ))}
         </ul>
@@ -52,9 +56,11 @@ const Home = () => {
       <section>
         <h2>Eléctrico</h2>
         <ul className="flex overflow-x-auto scrollbar-hide">
-          {electricPokemons.map((pokemon: any, index: number) => (
-            <li key={`pokemon-electric-${index}`} className="shrink-0">
-              <img src={pokemon} alt={`pokemon-electric-${index}`} />
+          {electricPokemons.map((pokemon: any) => (
+            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
+              <a href={`/pokemon-detail/${pokemon.id}`}>
+                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
+              </a>
             </li>
           ))}
         </ul>
@@ -62,9 +68,11 @@ const Home = () => {
       <section>
         <h2>Dragón</h2>
         <ul className="flex overflow-x-auto scrollbar-hide">
-          {dragonPokemons.map((pokemon: any, index: number) => (
-            <li key={`pokemon-dragon-${index}`} className="shrink-0">
-              <img src={pokemon} alt={`pokemon-dragon-${index}`} />
+          {dragonPokemons.map((pokemon: any) => (
+            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
+              <a href={`/pokemon-detail/${pokemon.id}`}>
+                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
+              </a>
             </li>
           ))}
         </ul>
@@ -72,9 +80,11 @@ const Home = () => {
       <section>
         <h2>Fantasma</h2>
         <ul className="flex overflow-x-auto scrollbar-hide">
-          {ghostPokemons.map((pokemon: any, index: number) => (
-            <li key={`pokemon-ghost-${index}`} className="shrink-0">
-              <img src={pokemon} alt={`pokemon-ghost-${index}`} />
+          {ghostPokemons.map((pokemon: any) => (
+            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
+              <a href={`/pokemon-detail/${pokemon.id}`}>
+                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
+              </a>
             </li>
           ))}
         </ul>

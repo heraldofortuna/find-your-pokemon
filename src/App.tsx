@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './pages/Menu';
 import Home from './pages/Home';
+import PokemonDetail from 'microfrontend1/PokemonDetail';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Menu />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/pokemon-detail/:id" element={<PokemonDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

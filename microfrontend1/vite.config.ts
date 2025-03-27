@@ -9,9 +9,9 @@ export default defineConfig({
       name: "microfrontend1",
       filename: "remoteEntry.js",
       exposes: {
-        "./Button": "./src/components/Button",
+        "./PokemonDetail": "./src/PokemonDetail",
       },
-      shared: ["react", "react-dom", "zustand"]
+      shared: ["axios", "react", "react-dom", "react-router-dom", "zustand"]
     })
   ],
   build: {
