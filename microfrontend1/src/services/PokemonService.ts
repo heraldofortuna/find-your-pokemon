@@ -1,7 +1,14 @@
+import apiClient from "../apiClient";
+
 async function PokemonService(pokemonId: string) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await apiClient.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("Error en PokemonService:", error);
+    throw new Error("No se pudo obtener la información del Pokémon");
+  }
 }
 
 export default PokemonService;

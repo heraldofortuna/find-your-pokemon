@@ -7,24 +7,45 @@ const Home = () => {
   const [electricPokemons, setElectricPokemons] = useState<any>([]);
   const [dragonPokemons, setDragonPokemons] = useState<any>([]);
   const [ghostPokemons, setGhostPokemons] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const firePokemons = await fetchPokemonsByType("fire");
-      const waterPokemons = await fetchPokemonsByType("water");
-      const electricPokemons = await fetchPokemonsByType("electric");
-      const dragonPokemons = await fetchPokemonsByType("dragon");
-      const ghostPokemons = await fetchPokemonsByType("ghost");
+      setIsLoading(true);
+      try {
+        const [
+          fire,
+          water,
+          electric,
+          dragon,
+          ghost
+        ] = await Promise.all([
+          fetchPokemonsByType("fire"),
+          fetchPokemonsByType("water"),
+          fetchPokemonsByType("electric"),
+          fetchPokemonsByType("dragon"),
+          fetchPokemonsByType("ghost")
+        ]);
 
-      setFirePokemons(firePokemons);
-      setWaterPokemons(waterPokemons);
-      setElectricPokemons(electricPokemons);
-      setDragonPokemons(dragonPokemons);
-      setGhostPokemons(ghostPokemons);
+        setFirePokemons(fire);
+        setWaterPokemons(water);
+        setElectricPokemons(electric);
+        setDragonPokemons(dragon);
+        setGhostPokemons(ghost);
+      } catch (err) {
+        setError("Error al cargar los Pokémon");
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
   }, []);
+
+  if (isLoading) return <p>Cargando Pokémon...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <>
