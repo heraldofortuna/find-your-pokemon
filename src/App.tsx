@@ -1,26 +1,16 @@
-import './App.css';
-import Button from './components/Button';
-import RemoteButton from "microfrontend1/Button";
-import Title from "microfrontend2/Title";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Menu from './pages/Menu';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div>
-      <ul className='flex flex-col gap-4 list-none'>
-        <li>
-          <Button text="Dark / Light" />
-        </li>
-        <li>
-          <Button text="Usuario" />
-        </li>
-        <li>
-          <a href="/home">
-            <Button text="Ingresar" />
-          </a>
-        </li>
-      </ul>
-      <RemoteButton />
-      <Title />
+    <div className='w-screen h-screen p-6 flex flex-col gap-6'>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Menu />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
