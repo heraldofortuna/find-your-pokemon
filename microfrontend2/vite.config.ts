@@ -7,12 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "main_app",
-      remotes: {
-        microfrontend1: "microfrontend1@http://localhost:3001/remoteEntry.js",
-        microfrontend2: "microfrontend2@http://localhost:3002/remoteEntry.js",
+      name: "microfrontend2",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Microfrontend2": "./src/Microfrontend2",
       },
       shared: ["react", "react-dom", "zustand"],
-    })
-  ]
+    }),
+  ],
 })
