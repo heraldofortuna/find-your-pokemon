@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite';
+import federation from '@originjs/vite-plugin-federation';
 import react from '@vitejs/plugin-react';
-import { federation } from "@module-federation/vite";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -10,9 +9,17 @@ export default defineConfig({
       name: "microfrontend2",
       filename: "remoteEntry.js",
       exposes: {
-        "./Microfrontend2": "./src/Microfrontend2",
+        "./Title": "./src/components/Title",
       },
       shared: ["react", "react-dom", "zustand"],
-    }),
+    })
   ],
+  build: {
+    modulePreload: false,
+    target: "esnext",
+    minify: false,
+    cssCodeSplit: false,
+  }
 })
+
+
