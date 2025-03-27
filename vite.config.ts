@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import federation from '@originjs/vite-plugin-federation';
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
@@ -12,7 +13,8 @@ export default defineConfig({
         microfrontend2: "http://localhost:3002/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "zustand"],
-    })
+    }),
+    tailwindcss(),
   ],
   build: {
     modulePreload: false,
