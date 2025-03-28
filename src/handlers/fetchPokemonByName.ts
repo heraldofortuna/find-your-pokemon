@@ -1,5 +1,6 @@
 import PokemonByNameService from "../services/PokemonByNameService";
 import { IPokemonCard } from "../types/pokemon";
+import capitalizeText from "../utils/capitalizeText";
 
 async function fetchPokemonByName(name: string): Promise<IPokemonCard[] | null> {
   try {
@@ -7,7 +8,7 @@ async function fetchPokemonByName(name: string): Promise<IPokemonCard[] | null> 
 
     const pokemon = {
       id: pokemonData.id,
-      name: pokemonData.name,
+      name: capitalizeText(pokemonData.name),
       sprite: pokemonData.sprites.front_default
     };
 

@@ -2,6 +2,7 @@ import PokemonsByDefaultService from "../services/PokemonsByDefaultService";
 import PokemonService from "../services/PokemonService";
 import { IPokemonCard } from "../types/pokemon";
 import { IPokemonByDefault } from "../types/services";
+import capitalizeText from "../utils/capitalizeText";
 
 async function fetchPokemonsByDefault(limit = 30, offset = 0): Promise<IPokemonCard[] | null> {
   try {
@@ -14,7 +15,7 @@ async function fetchPokemonsByDefault(limit = 30, offset = 0): Promise<IPokemonC
 
         return {
           id: pokemonData.id,
-          name: pokemonData.name,
+          name: capitalizeText(pokemonData.name),
           sprite: pokemonData.sprites.front_default
         };
       })

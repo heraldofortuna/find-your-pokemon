@@ -4,7 +4,7 @@ interface IButtonProps {
 
 const Button = ({ text }: IButtonProps) => {
   return (
-    <button className="w-full cursor-pointer">{text}</button>
+    <button className="bg-transparent w-full text-lg p-4 border border-white rounded-2xl cursor-pointer">{text}</button>
   )
 };
 
