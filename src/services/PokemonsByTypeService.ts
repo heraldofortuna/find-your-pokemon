@@ -2,7 +2,7 @@ import apiClient from "../apiClient";
 
 async function PokemonsByTypeService(type: string) {
   try {
-    const response = await apiClient.get(`https://pokeapi.co/api/v2/type/${type}`);
+    const response = await apiClient.get(`/type/${type}`);
     const data = response.data;
     return data;
   } catch (error) {

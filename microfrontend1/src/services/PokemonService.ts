@@ -2,7 +2,7 @@ import apiClient from "../apiClient";
 
 async function PokemonService(pokemonId: string) {
   try {
-    const response = await apiClient.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+    const response = await apiClient.get(`/pokemon/${pokemonId}`);
     const data = response.data;
     return data;
   } catch (error) {
