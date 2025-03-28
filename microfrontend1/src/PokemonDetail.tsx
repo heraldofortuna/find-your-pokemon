@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import fetchPokemon from "./handlers/fetchPokemon";
+import { IPokemon } from "./types/pokemon";
 import useHistorialStore from "find-your-pokemon/useHistorialStore";
 
 const PokemonDetail = () => {
   const { id: pokemonId } = useParams();
-  const [pokemon, setPokemonData] = useState<any>([]);
+  const [pokemon, setPokemonData] = useState<IPokemon | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const { addPokemon } = useHistorialStore();
@@ -39,13 +40,13 @@ const PokemonDetail = () => {
         <a href="/home">
           <img src="/icons/back-arrow.svg" />
         </a>
-        <h1>{pokemon.name}</h1>
+        <h1>{pokemon?.name}</h1>
       </div>
       
-      <img src={pokemon.sprites.front_default} />
+      <img src={pokemon?.sprite} />
 
       <div>
-        <p>N°{pokemon.id}</p>
+        <p>N°{pokemon?.id}</p>
       </div>
 
     </>

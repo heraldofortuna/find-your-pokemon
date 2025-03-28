@@ -1,14 +1,9 @@
 /// <reference types="vite/client" />
 
 declare module "find-your-pokemon/useHistorialStore" {
-  interface Pokemon {
-    id: number;
-    name: string;
-  }
-
   interface HistorialState {
-    pokemons: Pokemon[];
-    addPokemon: (pokemon: Pokemon) => void;
+    pokemons: IPokemon[];
+    addPokemon: (pokemon: IPokemon) => void;
     removePokemon: (id: number) => void;
     clearHistorial: () => void;
   }

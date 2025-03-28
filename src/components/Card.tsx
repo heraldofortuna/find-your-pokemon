@@ -8,7 +8,7 @@ interface ICardProps {
 
 const Card = ({ title, image, number }: ICardProps) => {
   return (
-    <div className="bg-white relative h-40 w-40 text-dark px-4 py-1 rounded-lg shadow-card z-10">
+    <div className="bg-white relative h-40 w-40 text-dark px-4 py-1 border border-gray-gray-dark rounded-lg z-10">
       <div className="relative flex flex-col items-center z-30">
         <span className="w-full text-xs text-gray-dark text-right">{ formatNumber(number) }</span>
         <img src={ image } alt={ title } />
