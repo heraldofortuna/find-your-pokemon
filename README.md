@@ -1,5 +1,13 @@
 # Encuentra tu Pokemon
 
+![Detalle de Pokemon](./src/assets/screenshot1.png)
+
+> Microfrontend 1 - Detalle de Pokemón
+
+![Historial de Pokemones](./src/assets/screenshot2.png)
+
+> Microfrontend 2 - Historial de Pokemones
+
 ---
 
 ## Contenido
