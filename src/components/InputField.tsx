@@ -13,7 +13,7 @@ const InputField = forwardRef<HTMLInputElement, IInputFieldProps>(
       <input
         ref={ref}
         type="text"
-        className="bg-white text-dark px-4 py-2 rounded-2xl border border-gray-gray-dark"
+        className="bg-white w-full text-dark px-4 py-2 rounded-2xl border border-gray-gray-dark"
         placeholder={placeholder}
         disabled={isDisabled}
         onClick={onClick}

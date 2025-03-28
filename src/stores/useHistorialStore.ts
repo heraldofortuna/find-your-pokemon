@@ -15,8 +15,8 @@ const useHistorialStore = create<HistorialState>()(
       pokemons: [],
       addPokemon: (pokemon) =>
         set((state) => {
-          const exists = state.pokemons.some((p) => p.id === pokemon.id);
-          return exists ? state : { pokemons: [...state.pokemons, pokemon] };
+          const filteredPokemons = state.pokemons.filter((p) => p.id !== pokemon.id);
+          return { pokemons: [...filteredPokemons, pokemon] };
         }),
       removePokemon: (id) =>
         set((state) => ({

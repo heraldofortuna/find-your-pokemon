@@ -160,20 +160,26 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <section className="flex justify-between items-center">
         <a href="/" className="w-8 h-8">
           <img src="/icons/back-arrow.svg" alt="Volver al menú principal." />
         </a>
         <h1 className="text-center text-2xl font-bold">Usuario</h1>
         <span className="w-8 h-8"></span>
-      </div>
+      </section>
 
-      <InputField
-        placeholder="Buscar Pokémon"
-        isDisabled={isLoading}
-        onClick={() => handleClickSearch()}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeSearch(event)}
-      />
+      <section className="flex items-center justify-between gap-4">
+        <InputField
+          placeholder="Buscar Pokémon"
+          isDisabled={isLoading}
+          onClick={() => handleClickSearch()}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeSearch(event)}
+        />
+
+        <a href="/pokemon-historial" className="bg-white w-[42px] h-[42px] min-w-[42px] min-h-[42px] flex items-center justify-center border border-gray-dark rounded-full">
+          <span className="text-dark font-semibold cursor-pointer">H</span>
+        </a>
+      </section>
 
       <CardList data={firePokemons} title="Fuego" isHorizontal isLoading={isLoading} />
       <CardList data={waterPokemons} title="Agua" isHorizontal isLoading={isLoading} />

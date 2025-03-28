@@ -8,8 +8,11 @@ export default defineConfig({
     federation({
       name: "microfrontend2",
       filename: "remoteEntry.js",
+      remotes: {
+        "find-your-pokemon": "http://localhost:3000/assets/remoteEntry.js",
+      },
       exposes: {
-        "./Title": "./src/components/Title",
+        "./PokemonHistorial": "./src/PokemonHistorial",
       },
       shared: ["react", "react-dom", "zustand"],
     })

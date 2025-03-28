@@ -1,5 +1,6 @@
 import { IPokemonCard } from "../types/pokemon";
 import Card from "./Card";
+import SkeletonCard from "./SkeletonCard";
 
 interface ICardListProps {
   data: IPokemonCard[];
@@ -14,7 +15,7 @@ const CardList = ({ data, title, isHorizontal = false, isLoading }: ICardListPro
       { title && <h2 className="text-xl">{ title }</h2> }
       {
         isLoading ? (
-          <div>Cargando</div>
+          <SkeletonCard />
         ) : (
           <ul className={`${isHorizontal ? 'flex overflow-x-auto scrollbar-hide' : 'grid grid-cols-auto-fit'} gap-2`}>
             {data.map((pokemon: IPokemonCard) => (

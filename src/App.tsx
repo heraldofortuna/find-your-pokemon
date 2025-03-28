@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './pages/Menu';
 import Home from './pages/Home';
 import PokemonDetail from 'microfrontend1/PokemonDetail';
+import PokemonHistorial from 'microfrontend2/PokemonHistorial';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path="/" element={<Menu />} />
           <Route path="/home" element={<Home />} />
           <Route path="/pokemon-detail/:id" element={<PokemonDetail />} />
+          <Route path="/pokemon-historial" element={<PokemonHistorial />} />
         </Routes>
       </BrowserRouter>
     </div>

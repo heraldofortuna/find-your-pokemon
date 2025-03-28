@@ -7,9 +7,6 @@ const Menu = () => {
 
       <ul className="flex flex-col gap-6">
         <li>
-          <Button text="Dark / Light" />
-        </li>
-        <li>
           <Button text="Usuario" />
         </li>
         <li>

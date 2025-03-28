@@ -190,9 +190,8 @@ const PokemonDetail = () => {
           </div>
         </div>
       </section>
-
     </>
   )
 }
 
-export default PokemonDetail
+export default PokemonDetail;
