@@ -15,7 +15,7 @@ const Toast = ({ isOpen, onClose, children }: ToastProps) => {
 
   return (
     <div
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 max-w-[90%] px-6 py-3 bg-dark text-white rounded-lg shadow-lg flex items-center gap-4 transition-all duration-300 z-100 ${
+      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[416px] px-6 py-3 bg-dark text-white rounded-lg shadow-lg flex items-center justify-between gap-4 transition-all duration-300 z-100 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
       }`}
     >

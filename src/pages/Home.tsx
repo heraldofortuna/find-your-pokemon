@@ -164,7 +164,7 @@ const Home = () => {
         <a href="/" className="w-8 h-8">
           <img src="/icons/back-arrow.svg" alt="Volver al menú principal." />
         </a>
-        <h1 className="text-center text-2xl">Usuario</h1>
+        <h1 className="text-center text-2xl font-bold">Usuario</h1>
         <span className="w-8 h-8"></span>
       </div>
 

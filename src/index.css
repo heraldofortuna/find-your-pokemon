@@ -50,6 +50,11 @@ body {
   background-color: var(--gray-light-color);
 }
 
+.bg-gray-dark {
+  background-color: var(--gray-dark-color);
+}
+
+
 .border-white {
   border-color: var(--white-color);
 }
