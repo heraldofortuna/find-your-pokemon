@@ -71,18 +71,14 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchPokemonsByDefaultData() {
-      console.log("fetchPokemonsByDefaultData!");
       const pokemonsByDefault = await fetchPokemonsByDefault();
-      console.log(pokemonsByDefault);
       if (pokemonsByDefault) {
         setSelectedPokemons(pokemonsByDefault);
       }
     }
 
     async function fetchPokemonsByNameData() {
-      console.log("fetchPokemonsByNameData!");
       const pokemonsByName = await fetchPokemonsByName(currentPokemon);
-      console.log(pokemonsByName);
       if (pokemonsByName) {
         setSelectedPokemons(pokemonsByName);
       }
