@@ -22,7 +22,7 @@ async function fetchPokemonsByType(type: string): Promise<IPokemonCard[] | null>
 
     return pokemons;
   } catch (error) {
-    console.error("Error en el Adapter:", error);
+    console.error("Error en el adaptador fetchPokemonsByType:", error);
     return null;
   }
 }

@@ -4,12 +4,14 @@ import InputField from "../components/InputField";
 import Modal from "../components/Modal";
 import CardList from "../components/CardList";
 import fetchPokemonsByDefault from "../handlers/fetchPokemonsByDefault";
-import fetchPokemonsByName from "../handlers/fetchPokemonsByName";
+import fetchPokemonByName from "../handlers/fetchPokemonByName";
 import { IPokemonCard } from "../types/pokemon";
 
 const Home = () => {
   const [currentPokemon, setCurrentPokemon] = useState<string>("");
   const [selectedPokemons, setSelectedPokemons] = useState<IPokemonCard[]>([]);
+  const [defaultPokemons, setDefaultPokemons] = useState<IPokemonCard[]>([]);
+  const [offset, setOffset] = useState<number>(0);
   const [firePokemons, setFirePokemons] = useState<IPokemonCard[]>([]);
   const [waterPokemons, setWaterPokemons] = useState<IPokemonCard[]>([]);
   const [electricPokemons, setElectricPokemons] = useState<IPokemonCard[]>([]);
@@ -36,6 +38,10 @@ const Home = () => {
 
   function handleChangeSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCurrentPokemon(event.target.value);
+  }
+
+  function handleScrollEnd () {
+    setOffset((prevOffset) => prevOffset + 30)
   }
 
   useEffect(() => {
@@ -84,31 +90,57 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchPokemonsByDefaultData() {
-      setIsModalLoading(true);
       const pokemonsByDefault = await fetchPokemonsByDefault();
       if (pokemonsByDefault) {
-        setSelectedPokemons(pokemonsByDefault);
-        setIsModalLoading(false);
-      }
-    }
-
-    async function fetchPokemonsByNameData() {
-      setIsModalLoading(true);
-      const pokemonsByName = await fetchPokemonsByName(currentPokemon);
-      if (pokemonsByName) {
-        setSelectedPokemons(pokemonsByName);
-        setIsModalLoading(false);
+        setDefaultPokemons(pokemonsByDefault);
       }
     }
 
     if (isModalOpen) {
-      if (currentPokemon.length > 0) {
-        fetchPokemonsByNameData();
-      } else {
-        fetchPokemonsByDefaultData();
+      fetchPokemonsByDefaultData();
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    async function fetchPokemonsByDefaultData() {
+      const pokemonsByDefault = await fetchPokemonsByDefault(30, offset);
+      if (pokemonsByDefault) {
+        setDefaultPokemons((prevPokemons) => [...prevPokemons, ...pokemonsByDefault]);
       }
     }
-  }, [isModalOpen, currentPokemon]);
+
+    if (offset) {
+      fetchPokemonsByDefaultData();
+    }
+  }, [offset]);
+
+  useEffect(() => {
+    async function fetchPokemonsData() {
+      setIsModalLoading(true);
+
+      if (!currentPokemon.length) {
+        setSelectedPokemons(defaultPokemons);
+      } else {
+        const pokemonByName = await fetchPokemonByName(currentPokemon);
+
+        if (pokemonByName) {
+          setSelectedPokemons(pokemonByName);
+        } else {
+          const selectedPokemons = defaultPokemons.filter((pokemon: IPokemonCard) => {
+            return pokemon.name.includes(currentPokemon);
+          });
+
+          setSelectedPokemons(selectedPokemons);
+        }
+      }
+
+      setIsModalLoading(false);
+    }
+
+    if (isModalOpen) {
+      fetchPokemonsData();
+    }
+  }, [currentPokemon, defaultPokemons, isModalOpen]);
 
   return (
     <>
@@ -127,7 +159,11 @@ const Home = () => {
       <CardList data={dragonPokemons} title="Dragón" isHorizontal isLoading={isLoading} />
       <CardList data={ghostPokemons} title="Fantasma" isHorizontal isLoading={isLoading} />
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onScrollEnd={handleScrollEnd}
+      >
         <InputField
           ref={inputRef}
           placeholder="Buscar Pokémon"

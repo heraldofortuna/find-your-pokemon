@@ -12,21 +12,21 @@ const CardList = ({ data, title, isHorizontal = false, isLoading }: ICardListPro
   return (
     <section>
       { title && <h2>{ title }</h2> }
-      <ul className={`${isHorizontal ? 'flex overflow-x-auto scrollbar-hide' : 'grid grid-cols-auto-fit'}`}>
-        {data.map((pokemon: IPokemonCard) => (
-          <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-            {
-              isLoading ? (
-                <div></div>
-              ) : (
+      {
+        isLoading ? (
+          <div>Cargando</div>
+        ) : (
+          <ul className={`${isHorizontal ? 'flex overflow-x-auto scrollbar-hide' : 'grid grid-cols-auto-fit'}`}>
+            {data.map((pokemon: IPokemonCard) => (
+              <li key={`pokemon-${pokemon.id}`} className="shrink-0">
                 <a href={`/pokemon-detail/${pokemon.id}`}>
-                <Card title={pokemon.name} image={pokemon.sprite} text={pokemon.id.toString()} />
+                  <Card title={pokemon.name} image={pokemon.sprite} text={pokemon.id.toString()} />
                 </a>
-              )
-            }
-          </li>
-        ))}
-      </ul>
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </section>
   )
 }

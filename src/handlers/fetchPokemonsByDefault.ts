@@ -1,11 +1,12 @@
 import PokemonsByDefaultService from "../services/PokemonsByDefaultService";
 import PokemonService from "../services/PokemonService";
+import { IPokemonCard } from "../types/pokemon";
 import { IPokemonByDefault } from "../types/services";
 
-async function fetchPokemonsByDefault() {
+async function fetchPokemonsByDefault(limit = 30, offset = 0): Promise<IPokemonCard[] | null> {
   try {
-    const data = await PokemonsByDefaultService();
-    const pokemonList = data.results;
+    const data = await PokemonsByDefaultService(limit, offset);
+    const pokemonList = data;
 
     const pokemons = await Promise.all(
       pokemonList.map(async (pokemon: IPokemonByDefault) => {
@@ -21,7 +22,7 @@ async function fetchPokemonsByDefault() {
 
     return pokemons;
   } catch (error) {
-    console.error("Error en el Adapter:", error);
+    console.error("Error en el adaptador fetchPokemonsByDefault:", error);
     return null;
   }
 }
