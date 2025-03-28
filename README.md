@@ -1,54 +1,107 @@
-# React + TypeScript + Vite
+# Encuentra tu Pokemon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Contenido
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   [Description](#description)
+-   [How to use?](#how-to-use)
+-   [References](#references)
+-   [License](#license)
+-   [Author](#author)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Descripción
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Aplicación que replica un Pokedex o buscador de Pokemones, contando además con un Historial y el detalle de cada Pokemon.
+
+### Tecnologías
+
+-   Vite
+-   React
+-   Axios
+-   TypeScript
+-   HTML
+-   TailwindCSS
+-   Microfrontends
+-   Module Federation
+
+[Go up](#encuentra-tu-pokemon)
+
+---
+
+## ¿Cómo usarlo?
+
+### Instalación:
+
+Ingrese y ejecute la siguiente sentencia en su consola:
+
+```html
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Correr los microfrontends:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ingrese al microfrontend1 y ejecute la siguiente sentencia en su consola:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```html
+npm run build
 ```
+
+Este microfrontend muestra el detalle de cada pokemon y correra en el puerto 3001.
+
+Luego, ingrese ahora al microfrontend2 y ejecute la siguiente sentencia en su consola:
+
+```html
+npm run build
+```
+
+Este microfrontend muestra el historial de pokemones vistos y correra en el puerto 3002.
+
+Por último, ingrese al proyecto main y ejecute la siguiente sentencia en su consola:
+
+```html
+npm run build
+```
+
+para entrar en el modo desarrollador.
+
+Finalmente, abre el puerto [http://localhost:3000](http://localhost:3000) para verlo en su navegador predeterminado.
+---
+
+## Licencia
+
+MIT License
+
+Copyright (c) [2021] [Heraldo Fortuna]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+[Go up](#encuentra-tu-pokemon)
+
+---
+
+## Autor
+
+-   Twitter - [@heraldofortuna](https://twitter.com/heraldofortuna)
+-   GitHub - [heraldofortuna](https://github.com/heraldofortuna)
+-   Linkedin - [heraldofortuna](https://www.linkedin.com/in/heraldo-fortuna/)
+
+[Go up](#encuentra-tu-pokemon)
