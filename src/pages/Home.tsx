@@ -2,18 +2,21 @@ import { useEffect, useState, useRef } from "react";
 import fetchPokemonsByType from "../handlers/fetchPokemonsByType";
 import InputField from "../components/InputField";
 import Modal from "../components/Modal";
+import CardList from "../components/CardList";
 import fetchPokemonsByDefault from "../handlers/fetchPokemonsByDefault";
 import fetchPokemonsByName from "../handlers/fetchPokemonsByName";
+import { IPokemonCard } from "../types/pokemon";
 
 const Home = () => {
   const [currentPokemon, setCurrentPokemon] = useState<string>("");
-  const [selectedPokemons, setSelectedPokemons] = useState<any>([]);
-  const [firePokemons, setFirePokemons] = useState<any>([]);
-  const [waterPokemons, setWaterPokemons] = useState<any>([]);
-  const [electricPokemons, setElectricPokemons] = useState<any>([]);
-  const [dragonPokemons, setDragonPokemons] = useState<any>([]);
-  const [ghostPokemons, setGhostPokemons] = useState<any>([]);
+  const [selectedPokemons, setSelectedPokemons] = useState<IPokemonCard[]>([]);
+  const [firePokemons, setFirePokemons] = useState<IPokemonCard[]>([]);
+  const [waterPokemons, setWaterPokemons] = useState<IPokemonCard[]>([]);
+  const [electricPokemons, setElectricPokemons] = useState<IPokemonCard[]>([]);
+  const [dragonPokemons, setDragonPokemons] = useState<IPokemonCard[]>([]);
+  const [ghostPokemons, setGhostPokemons] = useState<IPokemonCard[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalLoading, setIsModalLoading] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,7 +42,13 @@ const Home = () => {
     async function fetchPokemonsByTypeData() {
       setIsLoading(true);
 
-      const pokemonsByType = await Promise.all([
+      const [
+        firePokemons,
+        waterPokemons,
+        electricPokemons,
+        dragonPokemons,
+        ghostPokemons
+      ] = await Promise.all([
         fetchPokemonsByType("fire"),
         fetchPokemonsByType("water"),
         fetchPokemonsByType("electric"),
@@ -47,20 +56,24 @@ const Home = () => {
         fetchPokemonsByType("ghost")
       ]);
 
-      if (pokemonsByType) {
-        const [
-          fire,
-          water,
-          electric,
-          dragon,
-          ghost
-        ] = pokemonsByType;
+      if (firePokemons) {
+        setFirePokemons(firePokemons);
+      }
 
-        setFirePokemons(fire);
-        setWaterPokemons(water);
-        setElectricPokemons(electric);
-        setDragonPokemons(dragon);
-        setGhostPokemons(ghost);
+      if (waterPokemons) {
+        setWaterPokemons(waterPokemons);
+      }
+
+      if (electricPokemons) {
+        setElectricPokemons(electricPokemons);
+      }
+
+      if (dragonPokemons) {
+        setDragonPokemons(dragonPokemons);
+      }
+
+      if (ghostPokemons) {
+        setGhostPokemons(ghostPokemons);
       }
 
       setIsLoading(false);
@@ -71,16 +84,20 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchPokemonsByDefaultData() {
+      setIsModalLoading(true);
       const pokemonsByDefault = await fetchPokemonsByDefault();
       if (pokemonsByDefault) {
         setSelectedPokemons(pokemonsByDefault);
+        setIsModalLoading(false);
       }
     }
 
     async function fetchPokemonsByNameData() {
+      setIsModalLoading(true);
       const pokemonsByName = await fetchPokemonsByName(currentPokemon);
       if (pokemonsByName) {
         setSelectedPokemons(pokemonsByName);
+        setIsModalLoading(false);
       }
     }
 
@@ -93,78 +110,22 @@ const Home = () => {
     }
   }, [isModalOpen, currentPokemon]);
 
-  if (isLoading) return <p>Cargando Pokémon...</p>;
-
   return (
     <>
       <h1 className="text-center text-2xl">Usuario</h1>
 
       <InputField
         placeholder="Buscar Pokémon"
+        isDisabled={isLoading}
         onClick={() => handleClickSearch()}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeSearch(event)}
       />
 
-      <section>
-        <h2>Fuego</h2>
-        <ul className="flex overflow-x-auto scrollbar-hide">
-          {firePokemons.map((pokemon: any) => (
-            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-              <a href={`/pokemon-detail/${pokemon.id}`}>
-                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} className="w-auto h-auto" />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Agua</h2>
-        <ul className="flex overflow-x-auto scrollbar-hide">
-          {waterPokemons.map((pokemon: any) => (
-            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-              <a href={`/pokemon-detail/${pokemon.id}`}>
-                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Eléctrico</h2>
-        <ul className="flex overflow-x-auto scrollbar-hide">
-          {electricPokemons.map((pokemon: any) => (
-            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-              <a href={`/pokemon-detail/${pokemon.id}`}>
-                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Dragón</h2>
-        <ul className="flex overflow-x-auto scrollbar-hide">
-          {dragonPokemons.map((pokemon: any) => (
-            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-              <a href={`/pokemon-detail/${pokemon.id}`}>
-                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Fantasma</h2>
-        <ul className="flex overflow-x-auto scrollbar-hide">
-          {ghostPokemons.map((pokemon: any) => (
-            <li key={`pokemon-${pokemon.id}`} className="shrink-0">
-              <a href={`/pokemon-detail/${pokemon.id}`}>
-                <img src={pokemon.image} alt={`pokemon-${pokemon.id}`} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <CardList data={firePokemons} title="Fuego" isHorizontal isLoading={isLoading} />
+      <CardList data={waterPokemons} title="Agua" isHorizontal isLoading={isLoading} />
+      <CardList data={electricPokemons} title="Eléctrico" isHorizontal isLoading={isLoading} />
+      <CardList data={dragonPokemons} title="Dragón" isHorizontal isLoading={isLoading} />
+      <CardList data={ghostPokemons} title="Fantasma" isHorizontal isLoading={isLoading} />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <InputField
@@ -173,15 +134,7 @@ const Home = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChangeSearch(event)}
         />
         
-        <ul>
-          {selectedPokemons
-            .filter((pokemon: any) => pokemon.name.includes(currentPokemon))
-            .map((pokemon: any) => (
-              <li key={`pokemon-card-${pokemon.name}`}>
-                <a href={`/pokemon-detail/${pokemon.id}`}>{pokemon.name}</a>
-              </li>
-            ))}
-        </ul>
+        <CardList data={selectedPokemons} isLoading={isModalLoading} />
       </Modal>
     </>
   )

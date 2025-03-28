@@ -5,3 +5,8 @@ export interface IPokemonByType {
   };
   slot: number;
 }
+
+export interface IPokemonByDefault {
+  name: string;
+  url: string;
+}

@@ -5,7 +5,7 @@ import PokemonDetail from 'microfrontend1/PokemonDetail';
 
 function App() {
   return (
-    <div className='w-screen h-screen p-6 flex flex-col gap-6'>
+    <div className='w-screen min-h-screen p-6 flex flex-col gap-6'>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Menu />} />
