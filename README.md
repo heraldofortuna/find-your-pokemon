@@ -76,6 +76,7 @@ npm run build
 para entrar en el modo desarrollador.
 
 Finalmente, abre el puerto [http://localhost:3000](http://localhost:3000) para verlo en su navegador predeterminado.
+
 ---
 
 ## Licencia
