@@ -35,7 +35,7 @@ Aplicación que replica un Pokedex o buscador de Pokemones, contando además con
 -   Microfrontends
 -   Module Federation
 
-[Go up](#encuentra-tu-pokemon)
+[Ir al menú](#encuentra-tu-pokemon)
 
 ---
 
@@ -103,7 +103,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Go up](#encuentra-tu-pokemon)
+[Ir al menú](#encuentra-tu-pokemon)
 
 ---
 
@@ -113,4 +113,4 @@ SOFTWARE.
 -   GitHub - [heraldofortuna](https://github.com/heraldofortuna)
 -   Linkedin - [heraldofortuna](https://www.linkedin.com/in/heraldo-fortuna/)
 
-[Go up](#encuentra-tu-pokemon)
+[Ir al menú](#encuentra-tu-pokemon)
